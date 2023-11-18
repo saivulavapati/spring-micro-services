@@ -4,14 +4,16 @@ public class APIResponseDTO {
 
 	private EmployeeDTO employee;
 	private DepartmentDTO department;
+	private OrganizationDto organization;
 
 	public APIResponseDTO() {
 
 	}
 
-	public APIResponseDTO(EmployeeDTO employee, DepartmentDTO department) {
+	public APIResponseDTO(EmployeeDTO employee, DepartmentDTO department, OrganizationDto organization) {
 		this.employee = employee;
 		this.department = department;
+		this.organization = organization;
 	}
 
 	public EmployeeDTO getEmployee() {
@@ -28,6 +30,14 @@ public class APIResponseDTO {
 
 	public void setDepartment(DepartmentDTO department) {
 		this.department = department;
+	}
+
+	public OrganizationDto getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(OrganizationDto organization) {
+		this.organization = organization;
 	}
 
 }

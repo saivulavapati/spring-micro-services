@@ -6,4 +6,6 @@ import com.example.organizationservice.entity.Organization;
 
 public interface OrganizationRepository extends JpaRepository<Organization, Long>{
 
+ Organization findByOrganizationCode(String organizationCode);
+
 }

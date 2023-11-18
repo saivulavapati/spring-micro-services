@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.empmanagement.employeeservice.dto.APIResponseDTO;
 import com.empmanagement.employeeservice.dto.DepartmentDTO;
 import com.empmanagement.employeeservice.dto.EmployeeDTO;
+import com.empmanagement.employeeservice.dto.OrganizationDto;
 import com.empmanagement.employeeservice.model.Employee;
 import com.empmanagement.employeeservice.repository.EmployeeRepository;
 
@@ -23,11 +24,17 @@ public class EmployeeServiceImp implements EmployeeService {
 //	private WebClient webClient;
 	
 	private APIClient apiClient;
+	
+	private APIClinetOrganization apiClientOrganization;
 
-	public EmployeeServiceImp(EmployeeRepository employeeRepository, ModelMapper modelMapper, APIClient apiClient) {
+	
+
+	public EmployeeServiceImp(EmployeeRepository employeeRepository, ModelMapper modelMapper, APIClient apiClient,
+			APIClinetOrganization apiClientOrganization) {
 		this.employeeRepository = employeeRepository;
 		this.modelMapper = modelMapper;
-		this.apiClient = apiClient ;
+		this.apiClient = apiClient;
+		this.apiClientOrganization = apiClientOrganization;
 	}
 
 	@Override
@@ -60,10 +67,13 @@ public class EmployeeServiceImp implements EmployeeService {
 //		.block();
 		
 		DepartmentDTO departmentDTO = apiClient.getDepartmentByCode(employee.getDepartmentCode());
+		System.out.println(employee.getOrganizationCode()+"-----------------------");
+		OrganizationDto organizationByCodeDto = apiClientOrganization.getorganizationByCode(employee.getOrganizationCode());
 		EmployeeDTO employeeDTO = modelMapper.map(employee, EmployeeDTO.class);
 		APIResponseDTO apiResponse = new APIResponseDTO();
 		apiResponse.setEmployee(employeeDTO);
 		apiResponse.setDepartment(departmentDTO);
+		apiResponse.setOrganization(organizationByCodeDto);
 
 		return apiResponse;
 	}

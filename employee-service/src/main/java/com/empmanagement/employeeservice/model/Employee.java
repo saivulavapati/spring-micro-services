@@ -1,11 +1,11 @@
 package com.empmanagement.employeeservice.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "employees")
@@ -20,18 +20,26 @@ public class Employee {
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String departmentCode;
+	private String organizationCode;
 	
 	public Employee() {
 		
 	}
+	
 
-	public Employee(Long id, String firstName, String lastName, String email, String departmentCode) {
+	
+	public Employee(Long id, String firstName, String lastName, String email, String departmentCode,
+			String organizationCode) {
+		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.departmentCode = departmentCode;
+		this.organizationCode = organizationCode;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -65,19 +73,27 @@ public class Employee {
 		this.email = email;
 	}
 
-	
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", departmentCode=" + departmentCode + "]";
-	}
-
 	public String getDepartmentCode() {
 		return departmentCode;
 	}
 
 	public void setDepartmentCode(String departmentCode) {
 		this.departmentCode = departmentCode;
+	}
+
+	public String getOrganizationCode() {
+		return organizationCode;
+	}
+
+	public void setOrganizationCode(String organizationCode) {
+		this.organizationCode = organizationCode;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", departmentCode=" + departmentCode + ", organizationCode=" + organizationCode + "]";
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.organizationservice.dto;
+package com.empmanagement.employeeservice.dto;
 
 import java.time.LocalDateTime;
 
@@ -77,3 +77,4 @@ public class OrganizationDto {
 	}
 
 }
+
